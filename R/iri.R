@@ -223,7 +223,7 @@ iri <- function(time=c(2009,7,1,11,0,0),latitude=69.5864,longitude=19.2272,heibe
   # then sneak out the msis parameters, IRI contains MSIS but IRI_SUB does not return the values..
   imn <- as.integer(time[2])
   id <- as.integer(time[3])
-  f107d <- f107pd <- f10781 <- f107365 <- iapda <- c(0)
+  f107d <- f107pd <- f10781 <- f107365 <- iapda <- isdate <- c(0)
 
 
   # ap indices and F10.7
@@ -235,7 +235,9 @@ iri <- function(time=c(2009,7,1,11,0,0),latitude=69.5864,longitude=19.2272,heibe
                   f107pd = as.single( f107pd ),
                   f10781 = as.single( f10781 ),
                   f107365 = as.single( f107365 ),
-                  iapda = as.integer( iapda )
+                  iapda = as.integer( iapda ),
+                  isdate = as.integer( isdate ),
+                  PACKAGE="IRI2016"
                   )
 
   msis <- matrix( 0 , nrow=11 , ncol=1000 )
@@ -249,14 +251,16 @@ iri <- function(time=c(2009,7,1,11,0,0),latitude=69.5864,longitude=19.2272,heibe
 
   # GTD7 output in m^-3 and kg
   .Fortran("METERS",
-           METER = as.logical( TRUE )
+           METER = as.logical( TRUE ),
+           PACKAGE="IRI2016"
            )
 
   # force the model to use daily AP only
   sw <- rep( 1 , 23)
   sw[9] <- 0
   .Fortran("TSELEC",
-           sv = sw
+           sv = sw,
+           PACKAGE="IRI2016"
            )
 
   for( h in seq( heibeg , heiend , by=heistp ) ){
@@ -281,7 +285,8 @@ iri <- function(time=c(2009,7,1,11,0,0),latitude=69.5864,longitude=19.2272,heibe
                         ap = as.single( ap ),
                         mass = as.integer( mass ),
                         D = as.single( D ),
-                        T = as.single( T )
+                        T = as.single( T ),
+                        PACKAGE="IRI2016"
                         )
       msis[,k] <- c( olist[["D"]] , olist[["T"]] )
       k <- k + 1
