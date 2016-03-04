@@ -1,0 +1,11 @@
+       subroutine init()
+       COMMON/const2/icalls,nmono,iyearo,idaynro,rzino,igino,ut0
+
+       icalls=0
+       nmono=-1
+       iyearo=-1
+       idaynro=-1
+       rzino=-1
+       igino=-1
+       ut0=-1
+       end subroutine init

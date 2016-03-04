@@ -1,0 +1,2 @@
+export(iri,iriParams,ionNeutralCollisionFrequency,ionNeutralCollisionFrequency2)
+useDynLib(IRI2016)

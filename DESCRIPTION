@@ -1,0 +1,10 @@
+Package: IRI2016
+Version: 0.1.0
+Date: 2016-03-03
+Title: International Reference Ionosphere
+Author: Ilkka Virtanen <ilkka.i.virtanen@oulu.fi>
+Maintainer: Ilkka Virtanen <ilkka.i.virtanen@oulu.fi>
+Description: R-interface to IRI2016  FORTRAN routines
+License: None
+Depends:
+Copyright: University of Oulu, Finland
