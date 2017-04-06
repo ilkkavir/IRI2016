@@ -6,7 +6,7 @@ iri <- function(time=c(2009,7,1,11,0,0),latitude=69.5864,longitude=19.2272,heibe
 
   # option switches of iri_sub
   jf <- rep(T,50)
-  jf[c(4,5,21,22,29,30,33,34,35)] <- FALSE
+  jf[c(4,5,21,22,28,29,30,33,34,35)] <- FALSE
   if(messages) jf[34] <- TRUE
 #  jf[c(4,5,6,21,22,29,30,33,34,35)] <- F
   #
