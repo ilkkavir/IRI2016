@@ -192,6 +192,11 @@ iri <- function(time=c(2009,7,1,11,0,0),latitude=69.5864,longitude=19.2272,heibe
 #C*****************************************************************
 #C*****************************************************************
 
+  .Fortran("read_ig_rz",
+           PACKAGE="IRI2016")
+  .Fortran("readapf107",
+           PACKAGE="IRI2016")
+
   jmag  <- 0
   alati <- latitude
   along <- longitude
@@ -221,6 +226,7 @@ iri <- function(time=c(2009,7,1,11,0,0),latitude=69.5864,longitude=19.2272,heibe
   dimnames(iri)     <- list(c('e-','Tn','Ti','Te','O+','H+','He+','O2+','NO+','cluster','N+','','','','','','','','',''),seq(heibeg,heiend,by=heistp))
 
   # then sneak out the msis parameters, IRI contains MSIS but IRI_SUB does not return the values..
+  # the IRI msis is not quite reliable, should use the real msis instead...
   imn <- as.integer(time[2])
   id <- as.integer(time[3])
   f107d <- f107pd <- f10781 <- f107365 <- iapda <- isdate <- c(0)
@@ -255,13 +261,13 @@ iri <- function(time=c(2009,7,1,11,0,0),latitude=69.5864,longitude=19.2272,heibe
            PACKAGE="IRI2016"
            )
 
-  # force the model to use daily AP only
-  sw <- rep( 1 , 23)
-  sw[9] <- 0
-  .Fortran("TSELEC",
-           sv = sw,
-           PACKAGE="IRI2016"
-           )
+  ## # force the model to use daily AP only
+  ## sw <- rep( 1 , 23)
+  ## sw[9] <- 0
+  ## .Fortran("TSELEC",
+  ##          sv = sw,
+  ##          PACKAGE="IRI2016"
+  ##          )
 
   for( h in seq( heibeg , heiend , by=heistp ) ){
       if( h < 80 ){
