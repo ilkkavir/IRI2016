@@ -261,13 +261,13 @@ iri <- function(time=c(2009,7,1,11,0,0),latitude=69.5864,longitude=19.2272,heibe
            PACKAGE="IRI2016"
            )
 
-  ## # force the model to use daily AP only
-  ## sw <- rep( 1 , 23)
-  ## sw[9] <- 0
-  ## .Fortran("TSELEC",
-  ##          sv = sw,
-  ##          PACKAGE="IRI2016"
-  ##          )
+  # force the model to use daily AP only
+  sw <- rep( 1 , 23)
+#  sw[9] <- 0
+  .Fortran("TSELEC",
+           sv = sw,
+           PACKAGE="IRI2016"
+           )
 
   for( h in seq( heibeg , heiend , by=heistp ) ){
       if( h < 80 ){
