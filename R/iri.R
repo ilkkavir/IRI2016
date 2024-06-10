@@ -343,8 +343,10 @@ iriParams <- function(time=c(2009,7,1,11,0,0),latitude=69.5864,longitude=19.2272
 
             for(n in dimnames(iripar$msis)[[1]]){
                 if(nchar(n)>0){
-                    parmat[n,linds] <- iripar$msis[n,1]
-                    parmat[n,linds] <- iripar$msis[n,1000]
+                    if(n!='T'){
+                        parmat[n,linds] <- iripar$msis[n,1]
+                        parmat[n,linds] <- iripar$msis[n,1000]
+                    }
                 }
             }
 
